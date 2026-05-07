@@ -1,0 +1,398 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap');
+:root {
+  --pink: #FF6BB5; --pink-l: #FFD6ED; --pink-d: #c44d8a;
+  --purple: #A855F7; --purple-l: #EDE9FE; --purple-d: #7C3AED;
+  --mint: #10D9A0; --mint-l: #D1FAF0; --mint-d: #059669;
+  --sky: #38BDF8; --sky-l: #E0F4FE; --sky-d: #0284C7;
+  --yellow: #FACC15; --yellow-l: #FEF9C3; --yellow-d: #CA8A04;
+  --coral: #FF7A59; --coral-l: #FFE8E2; --coral-d: #C94E2A;
+  --bg: #FFF5FB;
+  --card: #FFFFFF;
+  --text: #2D1B4E;
+  --muted: #8B6FA8;
+  --border-r: 20px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 20px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.brand {
+  font-size: 22px;
+  font-weight: 900;
+  background: linear-gradient(90deg, var(--pink), var(--purple), var(--sky));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.live-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--pink-l);
+  color: var(--pink-d);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 5px 14px;
+  border-radius: 999px;
+}
+.live-dot {
+  width: 8px; height: 8px;
+  background: var(--pink);
+  border-radius: 50%;
+  animation: blink 1.2s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:0.3; transform:scale(0.6); }
+}
+
+/* event banner */
+.event-banner {
+  background: linear-gradient(135deg, #FF6BB5 0%, #A855F7 50%, #38BDF8 100%);
+  border-radius: var(--border-r);
+  padding: 22px 28px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.event-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='3' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E");
+}
+.event-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.25);
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+.event-name {
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 900;
+  color: white;
+  line-height: 1.1;
+}
+.event-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  margin-top: 4px;
+}
+.confetti-row {
+  position: absolute;
+  right: 24px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: float 3s ease-in-out infinite alternate;
+}
+@keyframes float {
+  from { transform: translateY(-55%); }
+  to   { transform: translateY(-45%); }
+}
+
+/* counter card */
+.counter-card {
+  background: white;
+  border-radius: var(--border-r);
+  padding: 28px;
+  margin-bottom: 16px;
+  border: 2px solid var(--pink-l);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.counter-card::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: -30px;
+  width: 120px; height: 120px;
+  background: radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.counter-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.counter-num {
+  font-size: clamp(60px, 15vw, 96px);
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: transform 0.15s ease;
+}
+.counter-num.pop {
+  animation: pop 0.3s ease;
+}
+@keyframes pop {
+  0%  { transform: scale(1); }
+  40% { transform: scale(1.07); }
+  100%{ transform: scale(1); }
+}
+.counter-sub {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* capacity bar */
+.cap-wrap {
+  margin-top: 20px;
+}
+.cap-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.cap-track {
+  height: 10px;
+  background: var(--purple-l);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.cap-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--pink), var(--purple), var(--sky));
+  border-radius: 999px;
+  width: 0%;
+  transition: width 0.8s cubic-bezier(.4,0,.2,1);
+}
+
+/* stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.stat-card {
+  border-radius: 16px;
+  padding: 14px 12px;
+  text-align: center;
+}
+.stat-card.pink   { background: var(--pink-l); }
+.stat-card.mint   { background: var(--mint-l); }
+.stat-card.yellow { background: var(--yellow-l); }
+.stat-val {
+  font-size: 20px;
+  font-weight: 900;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.stat-card.pink   .stat-val { color: var(--pink-d); }
+.stat-card.mint   .stat-val { color: var(--mint-d); }
+.stat-card.yellow .stat-val { color: var(--yellow-d); }
+.stat-key {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.stat-card.pink   .stat-key { color: var(--pink-d); opacity: 0.7; }
+.stat-card.mint   .stat-key { color: var(--mint-d); opacity: 0.7; }
+.stat-card.yellow .stat-key { color: var(--yellow-d); opacity: 0.7; }
+
+/* status strip */
+.status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+.sp-azure  { background: var(--sky-l);    color: var(--sky-d); }
+.sp-redis  { background: var(--coral-l);  color: var(--coral-d); }
+.sp-docker { background: var(--mint-l);   color: var(--mint-d); }
+.sp-update { background: var(--purple-l); color: var(--purple-d); margin-left: auto; }
+.sp-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.tech-row { display: flex; gap: 6px; }
+.tech-chip {
+  background: var(--purple-l);
+  color: var(--purple-d);
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+</style>
+
+<h2 class="sr-only">Flash Sale Live Traffic Dashboard — menampilkan jumlah pengunjung real-time</h2>
+
+<div class="header">
+  <div class="brand">FlashCmd ✦</div>
+  <div class="live-pill">
+    <div class="live-dot"></div>
+    LIVE
+  </div>
+</div>
+
+<div class="event-banner">
+  <div class="event-tag">EVENT AKTIF SEKARANG</div>
+  <div class="event-name">Retail Mega<br>Flash Sale!</div>
+  <div class="event-sub">Sistem Pelacak Real-Time · Azure Cloud</div>
+  <div class="confetti-row" aria-hidden="true">
+    <span>🎉</span>
+    <span>✨</span>
+    <span>🛍️</span>
+  </div>
+</div>
+
+<div class="counter-card">
+  <div class="counter-label">Live Traffic / Antrean Pembeli</div>
+  <div class="counter-num" id="counter">{{ count }}</div>
+  <div class="counter-sub">Pengunjung sedang memantau promo</div>
+  <div class="cap-wrap">
+    <div class="cap-header">
+      <span>Kapasitas Server</span>
+      <span id="cap-pct">0%</span>
+    </div>
+    <div class="cap-track">
+      <div class="cap-fill" id="capFill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card pink">
+    <div class="stat-val" id="stat-peak">—</div>
+    <div class="stat-key">Peak</div>
+  </div>
+  <div class="stat-card mint">
+    <div class="stat-val" id="stat-rate">—</div>
+    <div class="stat-key">Req/s</div>
+  </div>
+  <div class="stat-card yellow">
+    <div class="stat-val" id="stat-uptime">—</div>
+    <div class="stat-key">Uptime</div>
+  </div>
+</div>
+
+<div class="status-strip">
+  <div class="status-pill sp-azure"><div class="sp-dot"></div>Azure VM Active</div>
+  <div class="status-pill sp-redis"><div class="sp-dot"></div>Redis OK</div>
+  <div class="status-pill sp-docker"><div class="sp-dot"></div>Docker ✓</div>
+  <div class="status-pill sp-update"><div class="sp-dot"></div>Update: <span id="last-update">—</span></div>
+</div>
+
+<div class="footer">
+  <span>Real-Time Tracker · Redis + Docker</span>
+  <div class="tech-row">
+    <span class="tech-chip">FLASK</span>
+    <span class="tech-chip">REDIS</span>
+    <span class="tech-chip">AZURE</span>
+  </div>
+</div>
+
+<script>
+const MAX_CAP = 10000;
+const POLL_MS = 1500;
+const startT  = Date.now();
+
+let peak = parseInt(document.getElementById('counter').textContent) || 0;
+let prev = peak, prevT = Date.now();
+
+const $  = id => document.getElementById(id);
+
+function updateCap(n) {
+  const pct = Math.min((n / MAX_CAP) * 100, 100);
+  $('capFill').style.width = pct.toFixed(1) + '%';
+  $('cap-pct').textContent = pct.toFixed(1) + '%';
+}
+
+function animateTo(target) {
+  const el = $('counter');
+  const cur = parseInt(el.textContent.replace(/\D/g,'')) || 0;
+  if (cur === target) return;
+  el.classList.remove('pop');
+  void el.offsetWidth;
+  el.classList.add('pop');
+  const diff = target - cur, steps = Math.min(Math.abs(diff), 18);
+  let i = 0;
+  const t = setInterval(() => {
+    i++;
+    el.textContent = (Math.round(cur + diff * (i / steps))).toLocaleString('id-ID');
+    if (i >= steps) { el.textContent = target.toLocaleString('id-ID'); clearInterval(t); }
+  }, 16);
+}
+
+function uptime() {
+  const s = Math.floor((Date.now() - startT) / 1000);
+  const m = Math.floor(s / 60);
+  $('stat-uptime').textContent = m > 0 ? `${m}m ${s%60}s` : `${s}s`;
+}
+
+async function poll() {
+  try {
+    const d = await (await fetch('/count')).json();
+    const n = d.count;
+    const now = Date.now();
+    const rate = ((n - prev) / ((now - prevT) / 1000)).toFixed(1);
+    prev = n; prevT = now;
+    animateTo(n);
+    updateCap(n);
+    if (n > peak) { peak = n; $('stat-peak').textContent = peak.toLocaleString('id-ID'); }
+    $('stat-rate').textContent = rate + '/s';
+    $('last-update').textContent = new Date().toLocaleTimeString('id-ID');
+  } catch(e) { $('last-update').textContent = 'retry...'; }
+  uptime();
+}
+
+$('stat-peak').textContent = peak.toLocaleString('id-ID');
+updateCap(peak);
+setInterval(poll, POLL_MS);
+poll();
+</script>
